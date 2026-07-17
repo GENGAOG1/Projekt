@@ -171,8 +171,7 @@ def login():
 
     if request.method == "POST":
         if request.form.get("password") == PASSWORD:
-            return "Oooops I logged your IP-Adresse idiot"
-            time.sleep(5)
+            
             return redirect("https://vm.tiktok.com/ZGd9711rQ/")
             
         else:
