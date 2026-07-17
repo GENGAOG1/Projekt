@@ -181,7 +181,7 @@ def login():
 
 @app.route("/success")
 def success():
-    return SUCCESS_PAGE
+    return redirect("https://projekt-d5qu.onrender.com/visit")
 
 if __name__ == "__main__":
     app.run(debug=True)
