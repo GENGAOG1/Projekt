@@ -56,8 +56,8 @@ def log_ip():
         pass  # Silent fail
 
     time.sleep(3)
-
-return redirect(url_for("login"))
+    
+    return redirect(url_for("login"))
 
 PASSWORD = "Fynn"
 
