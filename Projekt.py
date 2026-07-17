@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template_string, redirect, url_for
 import os
 import time
-import request
+import requests
 
 app = Flask(__name__)
 
