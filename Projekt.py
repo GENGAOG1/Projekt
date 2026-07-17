@@ -57,6 +57,8 @@ def log_ip():
 
     time.sleep(3)
 
+return redirect(url_for("login"))
+
 PASSWORD = "Fynn"
 
 LOGIN_PAGE = """
