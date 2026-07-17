@@ -59,7 +59,7 @@ def log_ip():
     
     return redirect(url_for("login"))
 
-PASSWORD = "Fynn"
+PASSWORD = "GENGAOG"
 
 LOGIN_PAGE = """
 <!DOCTYPE html>
