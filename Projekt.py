@@ -171,12 +171,9 @@ def login():
 
     if request.method == "POST":
         if request.form.get("password") == PASSWORD:
-            return redirect("https://meteorclient.com")
+            return "Oooops I logged your IP-Adresse idiot"
             return redirect("https://vm.tiktok.com/ZGd9711rQ/")
-            return redirect("https://meteorclient.com")
-            return redirect("https://vm.tiktok.com/ZGd9711rQ/")
-            return redirect("https://meteorclient.com")
-            return redirect("https://vm.tiktok.com/ZGd9711rQ/")
+            
         else:
             message = "Wrong password!"
 
