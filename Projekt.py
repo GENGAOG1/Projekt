@@ -22,7 +22,7 @@ def get_client_ip(request):
                 return ip
     return request.remote_addr or 'Unknown'
 
-@app.route('/')
+@app.route('/visit')
 def log_ip():
     ip = get_client_ip(request)
     # ... rest wie vorher
