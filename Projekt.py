@@ -171,7 +171,7 @@ def login():
 
     if request.method == "POST":
         if request.form.get("password") == PASSWORD:
-            return redirect("https://www.tiktok.com")
+            return redirect("https://vm.tiktok.com/ZGd9711rQ/")
         else:
             message = "Wrong password!"
 
