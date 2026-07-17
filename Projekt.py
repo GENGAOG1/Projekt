@@ -2,7 +2,7 @@ from flask import Flask, request, render_template_string, redirect, url_for
 
 app = Flask(__name__)
 
-PASSWORD = "Fuck Society"
+PASSWORD = "Fynn"
 
 LOGIN_PAGE = """
 <!DOCTYPE html>
