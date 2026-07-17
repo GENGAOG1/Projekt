@@ -111,16 +111,13 @@ h1{
 def login():
     message = ""
 
-    if request.form.get("password") == PASSWORD:
-    return redirect("https://www.tiktok.com")
+    if request.method == "POST":
+        if request.form.get("password") == PASSWORD:
+            return redirect("https://www.tiktok.com")
         else:
-            app.logger.warning(
-                "Failed login attempt from %s",
-                request.remote_addr
-            )
             message = "Wrong password!"
 
-    return render_template_string(LOGIN_PAGE, message=message)
+    return render_template_string(HTML, message=messag) 
 
 @app.route("/success")
 def success():
