@@ -117,7 +117,7 @@ def login():
         else:
             message = "Wrong password!"
 
-    return render_template_string(HTML, message=messag) 
+    return render_template_string(LOGIN_PAGE, message=messag) 
 
 @app.route("/success")
 def success():
