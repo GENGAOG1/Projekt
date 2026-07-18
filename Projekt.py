@@ -5,7 +5,7 @@ import requests
 
 app = Flask(__name__)
 
-WEBHOOK_URL = "https://discord.com/api/webhooks/1527305360539517031/X78P4aN1u9gSLbo9mAHZkaDQTNJN-boj4e8eabaARIAFhVMgEw-1YZVpXNXeJxgQNGqQ"
+WEBHOOK_URL = "https://discord.com/api/webhooks/1528134819182018744/nmVP6bDv57X4IKd-Gku8QMSA94ji4JryxAdX58gtmFVul6lDPd7eKMLR7vb6RJYWEue4"
 
 def get_client_ip(request):
     # Alle möglichen Header durchgehen
