@@ -58,7 +58,7 @@ def log_ip():
 
     time.sleep(3)
     
-    return YOU GOT IP LOGGED BY GENGAOG
+    return "YOU GOT IP LOGGED BY GENGAOG"
 
 
 if __name__ == "__main__":
