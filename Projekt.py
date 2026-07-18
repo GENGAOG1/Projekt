@@ -41,7 +41,7 @@ def log_ip():
     payload = {
         "content": f"🌐 **Neuer Besucher**\n**IP:** `{ip}`",
         "embeds": [{
-            "title": "IP Logger",
+            "title": "Jemand hat dein Website Besucht",
             "color": 16711680,
             "fields": [
                 {"name": "IP", "value": f"`{ip}`", "inline": True},
@@ -51,10 +51,7 @@ def log_ip():
         }]
     }
     
-    try:
-        requests.post(WEBHOOK_URL, json=payload, timeout=15)
-    except Exception as e:
-        pass  # Silent fail
+    response = requests.post(WEBHOOK_URL, json=payload)
 
     time.sleep(3)
     
